@@ -1,0 +1,394 @@
+:root {
+  --bg: #eef3f1;
+  --card: #fff;
+  --ink: #10272b;
+  --mut: #5d7276;
+  --ac: #0f6b5c;
+  --on: #fff;
+  --warn: #d98b00;
+  --bad: #c0392b;
+  --ln: #d5e0dd;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1b1d;
+    --card: #15292c;
+    --ink: #e6f0ee;
+    --mut: #93a9ad;
+    --ac: #3fc3a8;
+    --on: #0d1b1d;
+    --warn: #f0b43a;
+    --bad: #ff7a6b;
+    --ln: #27403f;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(
+      58vw 58vw at -8% -6%,
+      color-mix(in srgb, var(--ac) 22%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      52vw 52vw at 112% 2%,
+      color-mix(in srgb, var(--warn) 16%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      72vw 72vw at 50% 118%,
+      color-mix(in srgb, var(--ac) 15%, transparent),
+      transparent 62%
+    ),
+    var(--bg);
+  background-attachment: fixed;
+  color: var(--ink);
+  font:
+    15px/1.45 "Plus Jakarta Sans",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+#v {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 16px 16px 120px;
+}
+h1 {
+  font-size: 26px;
+  margin: 4px 0 14px;
+  letter-spacing: -0.5px;
+}
+h2 {
+  font-size: 16px;
+  margin: 20px 0 8px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--ln);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+/* Kartu saldo: gradasi abstrak lembut */
+.card:has(.big) {
+  background:
+    radial-gradient(
+      130% 160% at 0% 0%,
+      color-mix(in srgb, var(--ac) 30%, var(--card)),
+      var(--card) 58%
+    ),
+    radial-gradient(
+      120% 150% at 100% 100%,
+      color-mix(in srgb, var(--warn) 20%, var(--card)),
+      transparent 55%
+    );
+  border-color: color-mix(in srgb, var(--ac) 32%, var(--ln));
+}
+.big {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.mut {
+  color: var(--mut);
+  font-size: 13px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.in {
+  color: var(--ac);
+}
+.out {
+  color: var(--bad);
+}
+.bar {
+  height: 8px;
+  background: var(--ln);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--ac);
+}
+.bar i.w {
+  background: var(--warn);
+}
+.bar i.b {
+  background: var(--bad);
+}
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  color: inherit;
+}
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--ln);
+  border-radius: 10px;
+  background: var(--bg);
+  margin-bottom: 8px;
+}
+button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--ac) 88%, #fff),
+    var(--ac) 55%,
+    color-mix(in srgb, var(--ac) 78%, #000)
+  );
+  color: var(--on);
+  font-weight: 700;
+  cursor: pointer;
+}
+button.g {
+  background: transparent;
+  color: var(--mut);
+  border: 1px solid var(--ln);
+}
+button.sm {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: var(--card);
+  border-top: 1px solid var(--ln);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  z-index: 5;
+}
+nav button {
+  flex: 1;
+  background: none;
+  color: var(--mut);
+  border-radius: 0;
+  padding: 12px 2px;
+  font-size: 12px;
+}
+nav button.on {
+  color: var(--ac);
+  box-shadow: inset 0 -3px 0 var(--ac);
+}
+#fab {
+  position: fixed;
+  right: 16px;
+  bottom: calc(68px + env(safe-area-inset-bottom, 0px));
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  font-size: 30px;
+  line-height: 1;
+  padding: 0;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at 50% 38%,
+    color-mix(in srgb, var(--ac) 60%, #fff),
+    var(--ac) 72%
+  );
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--ac) 45%, rgba(0, 0, 0, 0.3));
+}
+#sh {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: flex-end;
+  z-index: 10;
+}
+#sh.o {
+  display: flex;
+}
+#sh > div {
+  background: var(--card);
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  border-radius: 18px 18px 0 0;
+  padding: 16px;
+  max-height: 92%;
+  overflow: auto;
+}
+.seg {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.seg button {
+  flex: 1;
+  background: var(--bg);
+  color: var(--mut);
+}
+.seg button.on {
+  background: var(--ac);
+  color: var(--on);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.chips button {
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--ln);
+  padding: 7px 11px;
+  font-weight: 600;
+}
+.chips button.on {
+  background: var(--ac);
+  color: var(--on);
+  border-color: var(--ac);
+}
+.alert {
+  border-left: 4px solid var(--warn);
+  background: var(--card);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.alert.b {
+  border-color: var(--bad);
+}
+svg {
+  max-width: 100%;
+}
+.sl {
+  cursor: pointer;
+}
+#toast {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  top: calc(12px + env(safe-area-inset-top, 0px));
+  background: var(--ink);
+  color: var(--bg);
+  padding: 12px;
+  border-radius: 10px;
+  z-index: 20;
+  display: none;
+}
+.leg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+.leg i {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+.tw {
+  overflow-x: auto;
+}
+.av {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--ln);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  color: var(--mut);
+  overflow: hidden;
+  vertical-align: middle;
+}
+.av.l {
+  width: 96px;
+  height: 96px;
+  font-size: 36px;
+}
+.auth {
+  max-width: 380px;
+  margin: 12vh auto 0;
+}
+.th {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+  vertical-align: middle;
+}
+.lb {
+  display: inline-block;
+  border: 1px solid var(--ln);
+  border-radius: 10px;
+  padding: 7px 11px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mut);
+  cursor: pointer;
+}
+#vw {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+}
+#vw img {
+  max-width: 94%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+nav button {
+  font-size: 11px;
+}
+/* Scrollbar menyatu dengan tema */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--ac) 45%, var(--ln)) transparent;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ac) 45%, var(--ln));
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ac);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
